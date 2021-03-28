@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
+//Packages used
+//moment, react navigation, redux, react navigation tabs, react navigation tabs
+
+
+
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+
+import sentencesReducer from './store/reducers/sentences'
+import SentenceProNavigator from './navigation/SentenceProNavigator'
+
+const rootReducer = combineReducers({
+  sentences: sentencesReducer
+})
+
+const store = createStore(rootReducer)
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <SentenceProNavigator />
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
